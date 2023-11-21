@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BallReset : MonoBehaviour
 {
+    [SerializeField] private UnityEvent OnReset;
+
     [SerializeField] private Transform ball;
     [SerializeField] private Vector3 resetPosition;
 
@@ -11,5 +12,7 @@ public class BallReset : MonoBehaviour
        if (!collider.CompareTag("Player")) return;
 
         ball.position = resetPosition;
+
+        OnReset.Invoke();
     }
 }

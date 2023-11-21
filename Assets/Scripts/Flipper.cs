@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(HingeJoint))]
 public class Flipper : MonoBehaviour
 {
+    [SerializeField] private UnityEvent OnHit;
+
     private HingeJoint hinge;
 
     [SerializeField] private int mouseButton = 0;
@@ -39,5 +40,12 @@ public class Flipper : MonoBehaviour
         }
 
         hinge.spring = jointSpring;
+    }
+
+    void OnCollisionEnter(Collision collision) 
+    {
+        if (!collision.gameObject.CompareTag("Player")) return;
+
+        OnHit.Invoke();
     }
 }

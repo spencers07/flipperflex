@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Plunger : MonoBehaviour
@@ -18,12 +15,14 @@ public class Plunger : MonoBehaviour
        }
     }
 
-    void OnCollisionEnter(Collision collision) {
+    void OnCollisionEnter(Collision collision) 
+    {
         if (!collision.gameObject.CompareTag("Player")) return;
         ball = collision.gameObject;
     }
 
-    void OnCollisionExit(Collision collision) {
+    void OnCollisionExit(Collision collision) 
+    {
         if (!collision.gameObject.CompareTag("Player")) return;
         ball = null; 
     }
