@@ -21,12 +21,6 @@ public class Flipper : MonoBehaviour
         jointLimits.max = targetPosition;
         hinge.limits = jointLimits;
         hinge.useLimits = true;
-
-        JointSpring jointSpring = hinge.spring;
-        jointSpring.spring = 200;
-        jointSpring.damper = 3;
-        hinge.spring = jointSpring;
-        hinge.useSpring = true;
     }
 
     void Update()

@@ -4,26 +4,19 @@ public class Plunger : MonoBehaviour
 {
     private GameObject ball;
 
+    private SpringJoint springJoint;
+
+    void Start()
+    {
+        springJoint = GetComponent<SpringJoint>();
+    }
+
     void Update()
     {
-        if (!ball) return;
-
-       if (Input.GetKeyDown(KeyCode.Space)) {
-            Rigidbody rigidbody = ball.GetComponent<Rigidbody>();
-
-            rigidbody.AddForce(Vector3.up * 250);
-       }
-    }
-
-    void OnCollisionEnter(Collision collision) 
-    {
-        if (!collision.gameObject.CompareTag("Player")) return;
-        ball = collision.gameObject;
-    }
-
-    void OnCollisionExit(Collision collision) 
-    {
-        if (!collision.gameObject.CompareTag("Player")) return;
-        ball = null; 
+        springJoint.maxDistance = 2;
+    
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            springJoint.maxDistance = 0;
+        }
     }
 }
